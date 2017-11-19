@@ -18,5 +18,6 @@ Reqirements:
  	- queriyng "sentence"s
  	- generating "sentences" by providing "words"
  
-
+URL reservation  
+netsh http add urlacl url=http://+:8989/ user="Everyone"
 
