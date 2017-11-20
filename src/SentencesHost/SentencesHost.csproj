@@ -40,11 +40,15 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="M.EventBroker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\M.EventBroker.1.0.0\lib\net45\M.EventBroker.dll</HintPath>
+    </Reference>
     <Reference Include="M.Executables, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\M.Executables.2.0.2\lib\net45\M.Executables.dll</HintPath>
     </Reference>
     <Reference Include="M.Executables.Executors.SimpleInjector, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\M.Executables.Executors.SimpleInjector.1.0.2\lib\net45\M.Executables.Executors.SimpleInjector.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\executables.executors\src\M.Executables.Executors.SimpleInjector\bin\Release\net45\M.Executables.Executors.SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="M.Repository, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\M.Repository.2.0.0\lib\net45\M.Repository.dll</HintPath>
@@ -105,13 +109,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\WordCreated.cs" />
+    <Compile Include="WordsProcessing\SentenceCreator.cs" />
+    <Compile Include="WordsProcessing\WordLogger.cs" />
+    <Compile Include="Events\WordSetCreated.cs" />
+    <Compile Include="WordsProcessing\WordsTracker.cs" />
     <Compile Include="Infrastructure\ExecutorErrorHandler.cs" />
     <Compile Include="Infrastructure\ExecutorScopeEndHandler.cs" />
     <Compile Include="Infrastructure\SentencesDbContext.cs" />
     <Compile Include="Startup\Bootstrapper.cs" />
     <Compile Include="Startup\Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tasks\TaskBuilder.cs" />
+    <Compile Include="ScheduledTasks\TaskBuilder.cs" />
     <Compile Include="Web\SentenceController.cs" />
   </ItemGroup>
   <ItemGroup>

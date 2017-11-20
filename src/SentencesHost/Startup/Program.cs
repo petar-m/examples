@@ -1,6 +1,6 @@
 ﻿using System;
 using Microsoft.Owin.Hosting;
-using SentencesHost.Tasks;
+using SentencesHost.ScheduledTasks;
 
 namespace SentencesHost.Startup
 {

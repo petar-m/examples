@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using M.EventBroker;
 using M.Executables.Executors.SimpleInjector;
 using M.ScheduledAction;
 using M.ScheduledAction.Schedules;
 using Sentences;
+using SentencesHost.Events;
 using SimpleInjector;
 
-namespace SentencesHost.Tasks
+namespace SentencesHost.ScheduledTasks
 {
     public static class TaskBuilder
     {
@@ -23,8 +25,9 @@ namespace SentencesHost.Tasks
             {
                 using (var scope = container.GetInstance<IExecutorScope>())
                 {
+                    
                     var word = scope.Executor.Execute<GenerateWord, Word>();
-                    Console.WriteLine($"Word generated: {word.Value}");
+                    container.GetInstance<IEventBroker>().Publish(new WordCreated(word));
                 }
             };
 
