@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Web.Http;
 using M.EventBroker;
@@ -14,7 +13,6 @@ using SentencesHost.Infrastructure;
 using SentencesHost.ScheduledTasks;
 using SentencesHost.WordsProcessing;
 using SimpleInjector;
-using SimpleInjector.Diagnostics;
 using SimpleInjector.Integration.WebApi;
 using SimpleInjector.Lifestyles;
 
@@ -37,7 +35,7 @@ namespace SentencesHost.Startup
             container.Register<IExecutorAsync, SimpleInjectorExecutor>(Lifestyle.Scoped);
             container.Register<IScopeEndHandler, ExecutorScopeEndHandler>(Lifestyle.Scoped);
             container.Register<IErrorHandler, ExecutorErrorHandler>(Lifestyle.Singleton);
-            container.Register<IExecutorScope, ExecutorScope>(Lifestyle.Transient);
+            container.Register<IScopedContext, ScopedContext>(Lifestyle.Singleton);
 
             appBuilder.Use(async (context, next) =>
             {
@@ -66,15 +64,6 @@ namespace SentencesHost.Startup
             appBuilder.UseWebApi(config);
 
             TaskBuilder.Initialize(container);
-
-            Verify();
-        }
-
-        public void Verify()
-        {
-            container.GetRegistration(typeof(IExecutorScope))
-                     .Registration
-                     .SuppressDiagnosticWarning(DiagnosticType.DisposableTransientComponent, "IExecutorScope is intended to be disposed manually by caller.");
 
             container.Verify(VerificationOption.VerifyAndDiagnose);
         }

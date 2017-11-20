@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using M.EventBroker;
+using M.Executables;
 using M.Executables.Executors.SimpleInjector;
 using M.ScheduledAction;
 using M.ScheduledAction.Schedules;
@@ -23,12 +24,13 @@ namespace SentencesHost.ScheduledTasks
         {
             Action generateWordTask = () =>
             {
-                using (var scope = container.GetInstance<IExecutorScope>())
-                {
-                    
-                    var word = scope.Executor.Execute<GenerateWord, Word>();
-                    container.GetInstance<IEventBroker>().Publish(new WordCreated(word));
-                }
+                var scope = container.GetInstance<IScopedContext>();
+                scope.Execute<IExecutor, IEventBroker>(
+                    (executor, eventBroker) =>
+                    {
+                        var word = executor.Execute<GenerateWord, Word>();
+                        eventBroker.Publish(new WordCreated(word));
+                    });
             };
 
             var options = new Options

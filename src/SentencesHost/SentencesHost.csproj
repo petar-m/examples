@@ -46,9 +46,8 @@
     <Reference Include="M.Executables, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\M.Executables.2.0.2\lib\net45\M.Executables.dll</HintPath>
     </Reference>
-    <Reference Include="M.Executables.Executors.SimpleInjector, Version=1.0.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\executables.executors\src\M.Executables.Executors.SimpleInjector\bin\Release\net45\M.Executables.Executors.SimpleInjector.dll</HintPath>
+    <Reference Include="M.Executables.Executors.SimpleInjector, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\M.Executables.Executors.SimpleInjector.1.1.0\lib\net45\M.Executables.Executors.SimpleInjector.dll</HintPath>
     </Reference>
     <Reference Include="M.Repository, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\M.Repository.2.0.0\lib\net45\M.Repository.dll</HintPath>
