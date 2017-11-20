@@ -9,15 +9,18 @@ This is an example app and it's purpouse is to demonstrate usage of some librari
 [M.ScheduledAction](https://github.com/petar-m/scheduledaction)  
 [M.EventBroker](https://github.com/petar-m/eventbroker)  
 
-Reqirements:  
+What it does:  
   
- - generate a "word" every 10 seconds  
- - generate a "sentence" from the last 10 generated "words"  
- - store the "sentence" 
- - provide a HTTP API that allows  
+ - generates a "word" every 10 seconds  
+ - generates a "sentence" from the last 10 generated "words"  
+ - stores the "sentence" 
+ - provides a HTTP API that allows  
  	- queriyng "sentence"s
- 	- generating "sentences" by providing "words"
- 
-URL reservation  
-netsh http add urlacl url=http://+:8989/ user="Everyone"
+ 	- generating "sentences" by providing "words"  
+ 	
+***NOTE: This is not intended to demonstrate how an API should be built or code organised, it's an example of how some libraries may be used.*** 
+  
+In order to run the app a URL reservation is needed (execute with elevated priviliges)  
+
+    netsh http add urlacl url=http://+:8989/ user="Everyone"
 

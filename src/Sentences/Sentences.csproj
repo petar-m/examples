@@ -38,20 +38,20 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AddSentence.cs" />
     <Compile Include="GenerateSentence.cs" />
     <Compile Include="GenerateWord.cs" />
+    <Compile Include="GetSentences.cs" />
+    <Compile Include="GetSentencesMetadata.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Sentence.cs" />
     <Compile Include="SentenceGenerator.cs" />
+    <Compile Include="SentenceMetadata.cs" />
+    <Compile Include="SentencesSpecification.cs" />
     <Compile Include="Word.cs" />
     <Compile Include="WordGenerator.cs" />
   </ItemGroup>

@@ -18,12 +18,13 @@ namespace SentencesHost.WordsProcessing
 
         public void Handle(WordSetCreated @event)
         {
-            scope.Execute<IExecutor>(GenerateAndAddSentence);
+            scope.Execute<IExecutor, IEventBroker>(GenerateAndAddSentence);
 
-            void GenerateAndAddSentence(IExecutor executor)
+            void GenerateAndAddSentence(IExecutor executor, IEventBroker eventBroker)
             {
                 var sentence = executor.Execute<GenerateSentence, IEnumerable<Word>, Sentence>(@event.Words);
                 executor.Execute<AddSentence, Sentence>(sentence);
+                eventBroker.Publish(new SentenceCreated(sentence));
             }
         }
 

@@ -22,6 +22,16 @@ namespace SentencesHost.Infrastructure
                         .Property(x => x.Id)
                         .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
 
+            modelBuilder.Entity<SentenceMetadata>()
+                        .ToTable("sentence_metadata")
+                        .HasKey(x => x.Id)
+                        .Property(x => x.Id)
+                        .HasDatabaseGeneratedOption(DatabaseGeneratedOption.Identity);
+            modelBuilder.Entity<SentenceMetadata>()
+                        .HasRequired(x => x.Sentence)
+                        .WithMany()
+                        .HasForeignKey(x => x.SentenceId);
+
             base.OnModelCreating(modelBuilder);
         }
     }

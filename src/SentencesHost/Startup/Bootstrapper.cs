@@ -46,8 +46,11 @@ namespace SentencesHost.Startup
                 }
             });
 
-            container.Register<IEventHandler<WordCreated>, WordCreatedLogger>(Lifestyle.Singleton);
+            container.Register<IEventHandler<WordCreated>, WordLogger>(Lifestyle.Singleton);
             container.RegisterCollection<IEventHandler<WordCreated>>(new Type[] { typeof(IEventHandler<WordCreated>) });
+
+            container.Register<IEventHandler<SentenceCreated>, SentenceLogger>(Lifestyle.Singleton);
+            container.RegisterCollection<IEventHandler<SentenceCreated>>(new Type[] { typeof(IEventHandler<SentenceCreated>) });
 
             container.Register<IEventHandler<WordSetCreated>, SentenceCreator>(Lifestyle.Transient);
             container.RegisterCollection<IEventHandler<WordSetCreated>>(new Type[] { typeof(IEventHandler<WordSetCreated>) });
@@ -60,9 +63,10 @@ namespace SentencesHost.Startup
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
             config.MapHttpAttributeRoutes();
-            //config.Services.Replace(typeof(IExceptionHandler), new Web.ControllerExceptionHandler());
+            
             appBuilder.UseWebApi(config);
 
+            QueryableAsyncExtensionsProxy.Initialize(new EfQueryableAsyncExtensions());
             TaskBuilder.Initialize(container);
 
             container.Verify(VerificationOption.VerifyAndDiagnose);

@@ -108,8 +108,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\SentenceCreated.cs" />
     <Compile Include="Events\WordCreated.cs" />
     <Compile Include="WordsProcessing\SentenceCreator.cs" />
+    <Compile Include="WordsProcessing\SentenceLogger.cs" />
     <Compile Include="WordsProcessing\WordLogger.cs" />
     <Compile Include="Events\WordSetCreated.cs" />
     <Compile Include="WordsProcessing\WordsTracker.cs" />
