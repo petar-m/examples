@@ -15,7 +15,7 @@ What it does:
  - generates a "sentence" from the last 10 generated "words"  
  - stores the "sentence" 
  - provides a HTTP API that allows  
- 	- queriyng "sentence"s
+ 	- querying "sentence"s
  	- generating "sentences" by providing "words"  
  	
 ***NOTE: This is not intended to demonstrate how an API should be built or code organised, it's an example of how some libraries may be used.*** 
