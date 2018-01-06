@@ -1,12 +1,12 @@
 ﻿using M.EventBroker;
+using M.Logging;
 using SentencesHost.Events;
-using static System.Console;
 
 namespace SentencesHost.WordsProcessing
 {
     public class WordLogger : IEventHandler<WordCreated>
     {
-        public void Handle(WordCreated @event) => WriteLine($"Word generated: {@event.Word.Value}");
+        public void Handle(WordCreated @event) => Log.For(this).Info($"Word generated: {@event.Word.Value}");
 
         public bool ShouldHandle(WordCreated @event) => true;
     }

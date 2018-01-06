@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using M.EventBroker;
 using M.Executables;
 using M.Executables.Executors.SimpleInjector;
+using M.Logging;
 using M.ScheduledAction;
 using M.ScheduledAction.Schedules;
 using Sentences;
@@ -36,8 +37,8 @@ namespace SentencesHost.ScheduledTasks
             var options = new Options
             {
                 ExecuteOnStart = true,
-                OnError = (_, error) => Console.WriteLine($"Error generating word : {error}"),
-                OnReschedule = (_, interval) => Console.WriteLine($"Next word will be generated at: {DateTime.Now.Add(interval)}")
+                OnError = (_, error) => Log.For<ScheduledAction>().Error($"Error generating word : {error}"),
+                OnReschedule = (_, interval) => Log.For<ScheduledAction>().Trace($"Next word will be generated at: {DateTime.Now.Add(interval)}")
             };
 
             return new[] { new ScheduledAction(generateWordTask, new Fixed(TimeSpan.FromSeconds(10)), options) };

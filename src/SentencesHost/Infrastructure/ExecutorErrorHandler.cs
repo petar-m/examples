@@ -1,5 +1,6 @@
 ﻿using System;
 using M.Executables.Executors.SimpleInjector;
+using M.Logging;
 using SimpleInjector;
 
 namespace SentencesHost.Infrastructure
@@ -8,7 +9,7 @@ namespace SentencesHost.Infrastructure
     {
         public void Handle(Exception exception, Scope scope)
         {
-            Console.WriteLine(exception);
+            Log.For(this).Error(exception);
             scope.SetItem("HasError", true);
             scope.Dispose();
         }

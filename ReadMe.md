@@ -8,6 +8,8 @@ This is an example app and it's purpouse is to demonstrate usage of some librari
 [M.Repository.EntityFramework](https://github.com/petar-m/repository.ef)  
 [M.ScheduledAction](https://github.com/petar-m/scheduledaction)  
 [M.EventBroker](https://github.com/petar-m/eventbroker)  
+[M.Logging](https://github.com/petar-m/logging)  
+[M.Logging.NLog](https://github.com/petar-m/logging)
 
 What it does:  
   
