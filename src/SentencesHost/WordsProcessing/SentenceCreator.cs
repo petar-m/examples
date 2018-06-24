@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using M.EventBroker;
 using M.Executables;
 using M.Executables.Executors.SimpleInjector;
+using M.Logging;
 using Sentences;
 using SentencesHost.Events;
 
@@ -27,6 +29,8 @@ namespace SentencesHost.WordsProcessing
                 eventBroker.Publish(new SentenceCreated(sentence));
             }
         }
+
+        public void OnError(Exception exception, WordSetCreated @event) => Log.For(this).Error(exception);
 
         public bool ShouldHandle(WordSetCreated @event)
         {

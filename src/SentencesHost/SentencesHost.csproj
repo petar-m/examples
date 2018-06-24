@@ -40,8 +40,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="M.EventBroker, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\M.EventBroker.1.0.0\lib\net45\M.EventBroker.dll</HintPath>
+    <Reference Include="M.EventBroker, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\M.EventBroker.2.0.0\lib\netstandard2.0\M.EventBroker.dll</HintPath>
     </Reference>
     <Reference Include="M.Executables, Version=2.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\M.Executables.2.0.2\lib\net45\M.Executables.dll</HintPath>

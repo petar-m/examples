@@ -1,7 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data.Entity;
 using System.Web.Http;
 using M.EventBroker;
+using M.EventBroker.EvenHandlerRunners;
 using M.Executables;
 using M.Executables.Executors.SimpleInjector;
 using M.Repository;
@@ -55,7 +57,7 @@ namespace SentencesHost.Startup
             container.Register<IEventHandler<WordSetCreated>, SentenceCreator>(Lifestyle.Transient);
             container.RegisterCollection<IEventHandler<WordSetCreated>>(new Type[] { typeof(IEventHandler<WordSetCreated>) });
 
-            container.RegisterSingleton<IEventBroker>(() => new EventBroker(2, x => Console.WriteLine(x), t => container.GetAllInstances(typeof(IEventHandler<>).MakeGenericType(t))));
+            container.RegisterSingleton<IEventBroker>(new EventBroker(new UnrestrictedThreadPoolRunner(), new EventHandlerFactory(container)));
 
             container.RegisterSingleton<WordsTracker>();
 
@@ -63,13 +65,28 @@ namespace SentencesHost.Startup
             config.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             config.DependencyResolver = new SimpleInjectorWebApiDependencyResolver(container);
             config.MapHttpAttributeRoutes();
-            
+
             appBuilder.UseWebApi(config);
 
             QueryableAsyncExtensionsProxy.Initialize(new EfQueryableAsyncExtensions());
             TaskBuilder.Initialize(container);
 
             container.Verify(VerificationOption.VerifyAndDiagnose);
+        }
+
+        private class EventHandlerFactory : IEventHandlerFactory
+        {
+            private readonly Container _container;
+
+            public EventHandlerFactory(Container container)
+            {
+                _container = container;
+            }
+
+            public IEnumerable<IEventHandler<TEvent>> HandlersFor<TEvent>()
+            {
+                return _container.GetAllInstances<IEventHandler<TEvent>>();
+            }
         }
     }
 }
